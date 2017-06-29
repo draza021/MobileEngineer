@@ -20,7 +20,11 @@
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:ellipsize="end"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tv_description"
@@ -30,9 +34,12 @@
             android:gravity="left"
             android:text="description"
             android:textColor="@android:color/black"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:ellipsize="end"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            />
 
     </LinearLayout>
 

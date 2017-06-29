@@ -29,7 +29,9 @@ public class DemoItemDetailsActivity extends AppCompatActivity {
         if (intent != null) {
             tvTitle.setText(intent.getStringExtra(MainActivity.ITEM_TITLE));
             tvDescription.setText(intent.getStringExtra(MainActivity.ITEM_DESCRIPTION));
-            Picasso.with(getApplicationContext()).load(intent.getStringExtra(MainActivity.ITEM_IMAGE)).into(ivItemImage);
+            Picasso.with(getApplicationContext())
+                    .load(intent.getStringExtra(MainActivity.ITEM_IMAGE))
+                    .into(ivItemImage);
         }
 
     }

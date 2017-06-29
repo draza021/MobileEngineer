@@ -6,6 +6,6 @@
         android:width="1dp"
         android:height="1dp" />
 
-    <solid android:color="@color/cardview_dark_background" />
+    <solid android:color="@android:color/darker_gray" />
 
 </shape>

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.development.id.ns.mobileengineer.R;
 import com.development.id.ns.mobileengineer.activity.DemoItemDetailsActivity;
@@ -56,13 +55,13 @@ public class DemoItemAdapter extends RecyclerView.Adapter<DemoItemAdapter.ViewHo
 
         @Override
         public void onClick(View v) {
+            int position = getAdapterPosition();
             Context context = v.getContext();
             Intent intent = new Intent(context, DemoItemDetailsActivity.class);
-            intent.putExtra(MainActivity.ITEM_TITLE,demoItems.get(getPosition()).getTitle());
-            intent.putExtra(MainActivity.ITEM_DESCRIPTION,demoItems.get(getPosition()).getDescription());
-            intent.putExtra(MainActivity.ITEM_IMAGE,demoItems.get(getPosition()).getImageUrl());
+            intent.putExtra(MainActivity.ITEM_TITLE,demoItems.get(position).getTitle());
+            intent.putExtra(MainActivity.ITEM_DESCRIPTION,demoItems.get(position).getDescription());
+            intent.putExtra(MainActivity.ITEM_IMAGE,demoItems.get(position).getImageUrl());
             context.startActivity(intent);
-            Toast.makeText(v.getContext(), "position = " + getPosition(), Toast.LENGTH_SHORT).show();
         }
     }
 }
