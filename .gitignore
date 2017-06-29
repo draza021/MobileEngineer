@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/android,androidstudio
+# Created by https://www.gitignore.io/api/demoItems,androidstudio
 
 ### Android ###
 # Built application files
@@ -61,7 +61,7 @@ freeline_project_description.json
 gen-external-apklibs
 
 ### AndroidStudio ###
-# Covers files to be ignored for android development using Android Studio.
+# Covers files to be ignored for demoItems development using Android Studio.
 
 # Built application files
 
@@ -169,4 +169,4 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
-# End of https://www.gitignore.io/api/android,androidstudio
+# End of https://www.gitignore.io/api/demoItems,androidstudio
