@@ -3,6 +3,7 @@ package com.development.id.ns.mobileengineer.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,8 +30,14 @@ public class DemoItemDetailsActivity extends AppCompatActivity {
         if (intent != null) {
             tvTitle.setText(intent.getStringExtra(MainActivity.ITEM_TITLE));
             tvDescription.setText(intent.getStringExtra(MainActivity.ITEM_DESCRIPTION));
+            ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setTitle(intent.getStringExtra(MainActivity.ITEM_TITLE));
+                actionBar.setDisplayHomeAsUpEnabled(true);
+            }
             Picasso.with(getApplicationContext())
                     .load(intent.getStringExtra(MainActivity.ITEM_IMAGE))
+                    .placeholder(R.drawable.placeholder_image)
                     .into(ivItemImage);
         }
 

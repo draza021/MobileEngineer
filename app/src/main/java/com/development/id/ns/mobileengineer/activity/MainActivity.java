@@ -1,10 +1,14 @@
 package com.development.id.ns.mobileengineer.activity;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.development.id.ns.mobileengineer.R;
 import com.development.id.ns.mobileengineer.adapter.DemoItemAdapter;
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<DemoItem> demoItems;
     private DemoItemAdapter adapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews(){
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(R.string.main_title);
+        }
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -47,26 +57,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void callService() {
+        progressBar.setVisibility(View.VISIBLE);
         ApiEndpointInterfaces networkService = RestApi.getRestService();
-        networkService.getItems();
-
         Call<List<DemoItem>> call = networkService.getItems();
         call.enqueue(new Callback<List<DemoItem>>() {
             @Override
             public void onResponse(Call<List<DemoItem>> call, Response<List<DemoItem>> response) {
                 Log.e("", "items ok");
-                if (response.isSuccessful() && response.body() != null) {
-                    demoItems = new ArrayList<>(response.body());
-                    adapter = new DemoItemAdapter(demoItems);
-                    recyclerView.setAdapter(adapter);
-                }
+                progressBar.setVisibility(View.GONE);
+                if (response != null && response.body() != null)
+                    gotItems(response.body());
+                else
+                    gotItems(null);
             }
 
             @Override
             public void onFailure(Call<List<DemoItem>> call, Throwable t) {
                 Log.e("", "items NOK");
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), R.string.no_data_received, Toast.LENGTH_LONG).show();
             }
         });
     }
 
+    private void gotItems(List<DemoItem> items) {
+        if (items == null || items.size() == 0) {
+            Toast.makeText(getApplicationContext(), R.string.no_data_received, Toast.LENGTH_LONG).show();
+        } else {
+            demoItems = new ArrayList<>(items);
+            adapter = new DemoItemAdapter(demoItems);
+            recyclerView.setAdapter(adapter);
+        }
+    }
 }

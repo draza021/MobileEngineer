@@ -1,2 +1,4 @@
 <resources>
+    <string name="main_title">Demo Items List</string>
+    <string name="no_data_received">No Data Received.</string>
 </resources>
