@@ -1,19 +1,23 @@
+
+/**
+ * Created by Drago on 6/29/2017.
+ */
+
 package com.development.id.ns.mobileengineer.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.development.id.ns.mobileengineer.R;
 import com.squareup.picasso.Picasso;
 
-/**
- * Created by Drago on 6/29/2017.
- */
 
 public class DemoItemDetailsActivity extends AppCompatActivity {
     private ImageView ivItemImage;
@@ -34,6 +38,7 @@ public class DemoItemDetailsActivity extends AppCompatActivity {
             if (actionBar != null) {
                 actionBar.setTitle(intent.getStringExtra(MainActivity.ITEM_TITLE));
                 actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowHomeEnabled(true);
             }
             Picasso.with(getApplicationContext())
                     .load(intent.getStringExtra(MainActivity.ITEM_IMAGE))
@@ -47,5 +52,14 @@ public class DemoItemDetailsActivity extends AppCompatActivity {
         ivItemImage = (ImageView) findViewById(R.id.iv_details_item_image);
         tvTitle = (TextView) findViewById(R.id.tv_details_title);
         tvDescription = (TextView) findViewById(R.id.tv_details_description);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

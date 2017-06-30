@@ -1,3 +1,8 @@
+
+/**
+ * Created by Drago on 6/29/2017.
+ */
+
 package com.development.id.ns.mobileengineer.helper;
 
 import android.content.Context;
@@ -8,9 +13,7 @@ import android.view.View;
 
 import com.development.id.ns.mobileengineer.R;
 
-/**
- * Created by Drago on 6/29/2017.
- */
+
 
 public class SimpleDividerItemDecoration extends RecyclerView.ItemDecoration {
     private Drawable mDivider;

@@ -1,3 +1,8 @@
+
+/**
+ * Created by Drago on 6/29/2017.
+ */
+
 package com.development.id.ns.mobileengineer.activity;
 
 import android.os.Bundle;
@@ -67,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 if (response != null && response.body() != null)
                     gotItems(response.body());
-                else
+                else {
                     gotItems(null);
+                    Toast.makeText(getApplicationContext(), R.string.no_data_received, Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

@@ -1,10 +1,13 @@
-package com.development.id.ns.mobileengineer.backend.json;
-
-import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Drago on 6/28/2017.
  */
+
+package com.development.id.ns.mobileengineer.backend.json;
+
+import com.google.gson.annotations.SerializedName;
+
+
 
 public class DemoItem {
     @SerializedName("image")

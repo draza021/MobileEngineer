@@ -1,3 +1,8 @@
+
+/**
+ * Created by Drago on 6/29/2017.
+ */
+
 package com.development.id.ns.mobileengineer.adapter;
 
 import android.content.Context;
@@ -15,9 +20,7 @@ import com.development.id.ns.mobileengineer.backend.json.DemoItem;
 
 import java.util.ArrayList;
 
-/**
- * Created by Drago on 6/29/2017.
- */
+
 
 public class DemoItemAdapter extends RecyclerView.Adapter<DemoItemAdapter.ViewHolder> {
     private ArrayList<DemoItem> demoItems;
