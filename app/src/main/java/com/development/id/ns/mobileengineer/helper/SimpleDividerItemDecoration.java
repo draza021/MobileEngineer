@@ -13,8 +13,6 @@ import android.view.View;
 
 import com.development.id.ns.mobileengineer.R;
 
-
-
 public class SimpleDividerItemDecoration extends RecyclerView.ItemDecoration {
     private Drawable mDivider;
 

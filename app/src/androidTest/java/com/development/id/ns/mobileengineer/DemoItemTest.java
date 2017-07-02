@@ -44,7 +44,7 @@ public class DemoItemTest extends ActivityTestRule<MainActivity> {
         onView(withRecyclerView(recyclerViewID).atPosition(position)).perform(click());
     }
 
-    protected void checkIfIdDisplayed(int id){
+    private void checkIfIdDisplayed(int id){
         onView(withId(id)).check(matches(isDisplayed()));
     }
 
@@ -52,7 +52,7 @@ public class DemoItemTest extends ActivityTestRule<MainActivity> {
         return new RecyclerViewMatcher(recyclerViewId);
     }
 
-    protected void sleep(long milliseconds) {
+    private void sleep(long milliseconds) {
         try {
             Thread.sleep(milliseconds);
         } catch (InterruptedException e) {

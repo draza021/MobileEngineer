@@ -20,8 +20,6 @@ import com.development.id.ns.mobileengineer.backend.json.DemoItem;
 
 import java.util.ArrayList;
 
-
-
 public class DemoItemAdapter extends RecyclerView.Adapter<DemoItemAdapter.ViewHolder> {
     private ArrayList<DemoItem> demoItems;
 
@@ -46,10 +44,10 @@ public class DemoItemAdapter extends RecyclerView.Adapter<DemoItemAdapter.ViewHo
         return demoItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView tvTitle, tvDescription;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             view.setOnClickListener(this);
             tvTitle = (TextView)view.findViewById(R.id.tv_title);

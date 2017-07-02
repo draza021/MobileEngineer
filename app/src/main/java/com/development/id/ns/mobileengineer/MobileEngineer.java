@@ -14,7 +14,6 @@ import com.squareup.picasso.Picasso;
 
 public class MobileEngineer extends Application {
     public static MobileEngineer instance;
-    private Picasso picassoInstance;
 
     @Override
     public void onCreate() {
@@ -25,7 +24,7 @@ public class MobileEngineer extends Application {
 
     private void initApplication() {
         setRestApi();
-        picassoInstance = new Picasso.Builder(this)
+        Picasso picassoInstance = new Picasso.Builder(this)
                 .downloader(new OkHttp3Downloader(RestApi.getOkHttpClient()))
                 .indicatorsEnabled(BuildConfig.DEBUG)
                 .loggingEnabled(BuildConfig.DEBUG)

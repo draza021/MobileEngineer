@@ -7,8 +7,6 @@ package com.development.id.ns.mobileengineer.backend.json;
 
 import com.google.gson.annotations.SerializedName;
 
-
-
 public class DemoItem {
     @SerializedName("image")
     private String imageUrl;

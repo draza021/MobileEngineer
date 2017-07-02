@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.development.id.ns.mobileengineer.R;
 import com.squareup.picasso.Picasso;
 
-
 public class DemoItemDetailsActivity extends AppCompatActivity {
     private ImageView ivItemImage;
     private TextView tvTitle;

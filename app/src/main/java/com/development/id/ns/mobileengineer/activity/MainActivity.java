@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
     public static final String ITEM_IMAGE = "item_image";
 
     private RecyclerView recyclerView;
-    private ArrayList<DemoItem> demoItems;
-    private DemoItemAdapter adapter;
     private ProgressBar progressBar;
 
     @Override
@@ -91,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
         if (items == null || items.size() == 0) {
             Toast.makeText(getApplicationContext(), R.string.no_data_received, Toast.LENGTH_LONG).show();
         } else {
-            demoItems = new ArrayList<>(items);
-            adapter = new DemoItemAdapter(demoItems);
+            ArrayList<DemoItem> demoItems = new ArrayList<>(items);
+            DemoItemAdapter adapter = new DemoItemAdapter(demoItems);
             recyclerView.setAdapter(adapter);
         }
     }

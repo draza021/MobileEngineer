@@ -1,46 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="2dp">
+    android:orientation="vertical"
+    android:padding="4dp">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="4dp">
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:maxLines="1"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:text="title"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:maxLines="1"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:text="description"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:layout_marginBottom="4dp"
-            android:layout_marginLeft="4dp"
-            />
+</LinearLayout>
 
-    </LinearLayout>
-
-</FrameLayout>
