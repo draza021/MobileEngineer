@@ -48,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
         callService();
     }
 
-    private void initViews(){
+    private void initViews() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle(R.string.main_title);
         }
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void callService() {
-        progressBar.setVisibility(View.VISIBLE);
+        showProgress(true);
         ApiEndpointInterfaces networkService = RestApi.getRestService();
         Observable<List<DemoItem>> call = networkService.getItems();
         call.subscribeOn(Schedulers.io())
@@ -76,17 +76,16 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(List<DemoItem> value) {
-                        if (value != null && !value.isEmpty()) {
-                            Log.e("", "items OK");
-                            progressBar.setVisibility(View.GONE);
-                            gotItems(value);
-                        }
+                        Log.e("", "items OK");
+                        showProgress(false);
+                        gotItems(value);
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         Log.e("", "items NOK");
-                        progressBar.setVisibility(View.GONE);
+                        showProgress(false);
                         Toast.makeText(getApplicationContext(), R.string.no_data_received, Toast.LENGTH_LONG).show();
                     }
 
@@ -98,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void gotItems(List<DemoItem> items) {
         if (items == null || items.size() == 0) {
             Toast.makeText(getApplicationContext(), R.string.no_data_received, Toast.LENGTH_LONG).show();
@@ -107,5 +105,10 @@ public class MainActivity extends AppCompatActivity {
             DemoItemAdapter adapter = new DemoItemAdapter(demoItems);
             recyclerView.setAdapter(adapter);
         }
+    }
+
+    private void showProgress(boolean showIt) {
+        if (showIt) progressBar.setVisibility(View.VISIBLE);
+        else progressBar.setVisibility(View.GONE);
     }
 }
