@@ -76,8 +76,11 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(List<DemoItem> value) {
-                        progressBar.setVisibility(View.GONE);
-                        gotItems(value);
+                        if (value != null && !value.isEmpty()) {
+                            Log.e("", "items OK");
+                            progressBar.setVisibility(View.GONE);
+                            gotItems(value);
+                        }
                     }
 
                     @Override
