@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.development.id.ns.mobileengineer.BuildConfig;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -57,6 +58,7 @@ public class RestApi {
         retrofit = builder
                 .baseUrl(API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)
                 .build();
     }

@@ -25,9 +25,11 @@ import com.development.id.ns.mobileengineer.helper.SimpleDividerItemDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     public static final String ITEM_TITLE = "item_title";
@@ -62,28 +64,37 @@ public class MainActivity extends AppCompatActivity {
     private void callService() {
         progressBar.setVisibility(View.VISIBLE);
         ApiEndpointInterfaces networkService = RestApi.getRestService();
-        Call<List<DemoItem>> call = networkService.getItems();
-        call.enqueue(new Callback<List<DemoItem>>() {
-            @Override
-            public void onResponse(Call<List<DemoItem>> call, Response<List<DemoItem>> response) {
-                Log.e("", "items ok");
-                progressBar.setVisibility(View.GONE);
-                if (response != null && response.body() != null)
-                    gotItems(response.body());
-                else {
-                    gotItems(null);
-                    Toast.makeText(getApplicationContext(), R.string.no_data_received, Toast.LENGTH_LONG).show();
-                }
-            }
+        Observable<List<DemoItem>> call = networkService.getItems();
+        call.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<DemoItem>>() {
 
-            @Override
-            public void onFailure(Call<List<DemoItem>> call, Throwable t) {
-                Log.e("", "items NOK");
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(getApplicationContext(), R.string.no_data_received, Toast.LENGTH_LONG).show();
-            }
-        });
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<DemoItem> value) {
+                        progressBar.setVisibility(View.GONE);
+                        gotItems(value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e("", "items NOK");
+                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), R.string.no_data_received, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
+
+
 
     private void gotItems(List<DemoItem> items) {
         if (items == null || items.size() == 0) {
